@@ -24,7 +24,6 @@ import (
 	"path/filepath"
 	"reflect"
 	"sync"
-	"syscall"
 
 	"github.com/ethereum/go-ethereum/event"
 	"github.com/ethereum/go-ethereum/internal/debug"
@@ -178,12 +177,14 @@ func (n *Node) Start() error {
 	for _, service := range services {
 		running.Protocols = append(running.Protocols, service.Protocols()...)
 	}
+/*
 	if err := running.Start(); err != nil {
 		if errno, ok := err.(syscall.Errno); ok && datadirInUseErrnos[uint(errno)] {
 			return ErrDatadirUsed
 		}
 		return err
 	}
+*/
 	// Start each of the services
 	started := []reflect.Type{}
 	for kind, service := range services {
