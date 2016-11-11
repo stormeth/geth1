@@ -200,7 +200,7 @@ func New(stateDb ethdb.Database, mux *event.TypeMux, hasHeader headerCheckFn, ha
 		headerProcCh:     make(chan []*types.Header, 1),
 		quitCh:           make(chan struct{}),
 	}
-	go dl.qosTuner()
+	// go dl.qosTuner()
 	return dl
 }
 
