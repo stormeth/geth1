@@ -31,6 +31,9 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto/sha3"
 	"github.com/ethereum/go-ethereum/rlp"
+
+	"github.com/ethereum/go-ethereum/logger"
+	"github.com/ethereum/go-ethereum/logger/glog"
 )
 
 // A BlockNonce is a 64-bit hash which proves (combined with the
@@ -282,6 +285,7 @@ func (b *Block) DecodeRLP(s *rlp.Stream) error {
 }
 
 func (b *Block) EncodeRLP(w io.Writer) error {
+	glog.V(logger.Info).Infof("%v: block EncodeRLP", b.header)
 	return rlp.Encode(w, extblock{
 		Header: b.header,
 		Txs:    b.transactions,
